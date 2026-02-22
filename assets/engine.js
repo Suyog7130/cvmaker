@@ -2,6 +2,24 @@
 
 let busytexMod = null;
 
+// Global scope in assets/engine.js
+let pipelineInstance = null;
+
+export async function getPipeline() {
+  if (!pipelineInstance) {
+    console.log("Initializing BusyTeX engine (this may take a moment)...");
+    pipelineInstance = new BusytexPipeline({
+      root: APP_BASE + "core/busytex/",
+      template: "moderncv",
+      engine: "lualatex"
+    });
+    // Optional: wait for it to be ready
+    await pipelineInstance.initialize(); 
+  }
+  return pipelineInstance;
+}
+
+
 export async function loadBusyTexModule() {
   if (busytexMod) return busytexMod;
 
@@ -16,22 +34,28 @@ export async function loadBusyTexModule() {
   }
 }
 
+// Optionally pass onLoading callback to show progress to user
 export class LatexEngineManager {
-  constructor({ busytexBasePath = "/cvmaker/core/busytex", useWorker = true } = {}) {
+  constructor({ busytexBasePath = "/cvmaker/core/busytex", useWorker = true, onLoading = null } = {}) {
     this.busytexBasePath = busytexBasePath;
     this.useWorker = useWorker;
     this.runner = null;
     this.engineName = "lualatex";
     this.engine = null;
-    // IMPORTANT: Use an empty string. 
-    // This tells the worker to look in its OWN directory (core/busytex/)
-    // instead of trying to "find" the directory again.
     this.root = "";
+    this.onLoading = onLoading; // Callback for loading status
   }
 
   async initIfNeeded() {
     const mod = await loadBusyTexModule();
     if (this.runner && this.runner.isInitialized()) return;
+
+    // Notify user that WASM is loading (if callback provided)
+    if (typeof this.onLoading === 'function') {
+      this.onLoading('Downloading and compiling BusyTeX engine (WASM)... This may take up to a minute on first load.');
+    } else {
+      console.log('Downloading and compiling BusyTeX engine (WASM)... This may take up to a minute on first load.');
+    }
 
     this.runner = new mod.BusyTexRunner({
       busytexBasePath: "/cvmaker/core/busytex", // Use empty string to load from worker's own directory
@@ -41,7 +65,15 @@ export class LatexEngineManager {
 
     // initialize(true) enables Web Worker.
     await this.runner.initialize(!!this.useWorker);
+
+    // Loading complete
+    if (typeof this.onLoading === 'function') {
+      this.onLoading(null);
+    }
   }
+// Server-side/deployment note:
+// To further reduce WASM load/compile time, serve busytex.wasm with gzip or brotli compression and correct MIME type (application/wasm).
+// Consider using a CDN for faster delivery. If possible, use instantiateStreaming in the worker/module for best performance.
 
   async setEngine(engineName) {
     await this.initIfNeeded();
