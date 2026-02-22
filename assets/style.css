@@ -57,21 +57,29 @@ body{
 
 .split{
   height: calc(100vh - 64px);
-  display:grid;
-  grid-template-columns: 520px 1fr;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
 }
 
+/* Horizontal split: left is top */
 .left{
-  border-right:1px solid var(--border);
-  background:var(--panel);
-  overflow:auto;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  overflow: auto;
+  height: 55vh;
+  width: 100%;
 }
 
+/* Horizontal split: right is bottom */
 .right{
-  background:var(--panel2);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
+  background: var(--panel2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 45vh;
+  width: 100%;
 }
 
 .tabs{
