@@ -179,7 +179,7 @@ class BusytexPipeline {
         // Always load from /core/busytex/busytex.js absolute path
         let fixedSrc = src;
         if (src.includes('busytex.js')) {
-            fixedSrc = location.origin + '/core/busytex/busytex.js';
+            fixedSrc = location.origin + '/cvmaker/core/busytex/busytex.js';
         } else if (!/^https?:\/\//.test(src) && !src.startsWith('/')) {
             fixedSrc = location.origin + location.pathname.replace(/\/[^/]*$/, '/') + src;
         } else if (src.startsWith('/')) {
