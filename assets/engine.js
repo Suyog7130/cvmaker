@@ -23,10 +23,7 @@ export class LatexEngineManager {
     this.runner = null;
     this.engineName = "lualatex";
     this.engine = null;
-    // IMPORTANT: Use an empty string. 
-    // This tells the worker to look in its OWN directory (core/busytex/)
-    // instead of trying to "find" the directory again.
-    this.root = "";
+    this.root = "https://cdn.jsdelivr.net/gh/suyoggarg/cvmaker/core/busytex/"; // Default to CDN, but can be overridden by config
   }
 
   async initIfNeeded() {
