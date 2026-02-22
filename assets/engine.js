@@ -26,7 +26,7 @@ export class LatexEngineManager {
     // IMPORTANT: Use an empty string. 
     // This tells the worker to look in its OWN directory (core/busytex/)
     // instead of trying to "find" the directory again.
-    this.root = "";
+    this.root = "/cvmaker/core/busytex/";
   }
 
   async initIfNeeded() {
