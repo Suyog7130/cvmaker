@@ -45,7 +45,7 @@ class BusyTexRunner {
         this.worker = null;
         this.busytexPipeline = null;
         this.config = {
-            busytexBasePath: (config.busytexBasePath || 'core/busytex').replace(/\/+$/, ''),
+            busytexBasePath: (config.busytexBasePath || './core/busytex').replace(/\/+$/, ''),
             verbose: config.verbose ?? false
         };
         // Remove any trailing slashes (including multiple)
