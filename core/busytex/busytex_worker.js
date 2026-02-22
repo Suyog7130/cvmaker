@@ -1,4 +1,4 @@
-importScripts('/core/busytex/busytex_pipeline.js');
+importScripts('/cvmaker/core/busytex/busytex_pipeline.js');
 
 self.pipeline = null;
 
