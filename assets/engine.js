@@ -17,7 +17,7 @@ export async function loadBusyTexModule() {
 }
 
 export class LatexEngineManager {
-  constructor({ busytexBasePath = "/core/busytex", useWorker = true } = {}) {
+  constructor({ busytexBasePath = "/cvmaker/core/busytex", useWorker = true } = {}) {
     this.busytexBasePath = busytexBasePath;
     this.useWorker = useWorker;
     this.runner = null;
