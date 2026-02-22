@@ -23,7 +23,7 @@ export class LatexEngineManager {
     this.runner = null;
     this.engineName = "lualatex";
     this.engine = null;
-    this.root = "https://cdn.jsdelivr.net/gh/suyoggarg/cvmaker@main/core/busytex/"; // Default to CDN, but can be overridden by config
+    this.root = "https://cdn.jsdelivr.net/gh/suyog7130/cvmaker@main/core/busytex/"; // Default to CDN, but can be overridden by config
   }
 
   async initIfNeeded() {
