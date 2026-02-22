@@ -26,7 +26,7 @@ export class LatexEngineManager {
     // IMPORTANT: Use an empty string. 
     // This tells the worker to look in its OWN directory (core/busytex/)
     // instead of trying to "find" the directory again.
-    this.root = "/cvmaker/core/busytex/";
+    this.root = "";
   }
 
   async initIfNeeded() {
@@ -34,7 +34,7 @@ export class LatexEngineManager {
     if (this.runner && this.runner.isInitialized()) return;
 
     this.runner = new mod.BusyTexRunner({
-      busytexBasePath: "", // Use empty string to load from worker's own directory
+      busytexBasePath: "/cvmaker/core/busytex", // Use empty string to load from worker's own directory
       verbose: false,
       root: this.root
     });
