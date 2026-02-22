@@ -12,7 +12,7 @@ import { renderMinimalAcademic } from "./templates/minimal_academic.js";
 import { renderModernCv } from "./templates/moderncv.js";
 
 const MANIFEST_URL = "./static/classes/manifest.json";
-const BUSYTEX_BASE_PATH = "./core/busytex";
+const BUSYTEX_BASE_PATH = "/core/busytex";
 
 const el = (id) => document.getElementById(id);
 

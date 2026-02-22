@@ -17,12 +17,16 @@ export async function loadBusyTexModule() {
 }
 
 export class LatexEngineManager {
-  constructor({ busytexBasePath = "", useWorker = true } = {}) {
+  constructor({ busytexBasePath = "/core/busytex", useWorker = true } = {}) {
     this.busytexBasePath = busytexBasePath;
     this.useWorker = useWorker;
     this.runner = null;
     this.engineName = "lualatex";
     this.engine = null;
+    // IMPORTANT: Use an empty string. 
+    // This tells the worker to look in its OWN directory (core/busytex/)
+    // instead of trying to "find" the directory again.
+    this.root = "";
   }
 
   async initIfNeeded() {
@@ -30,8 +34,9 @@ export class LatexEngineManager {
     if (this.runner && this.runner.isInitialized()) return;
 
     this.runner = new mod.BusyTexRunner({
-      busytexBasePath: this.busytexBasePath,
+      busytexBasePath: "", // Use empty string to load from worker's own directory
       verbose: false,
+      root: this.root
     });
 
     // initialize(true) enables Web Worker.

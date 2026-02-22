@@ -48,6 +48,8 @@ class BusyTexRunner {
             busytexBasePath: (config.busytexBasePath || '/core/busytex').replace(/\/+$/, ''),
             verbose: config.verbose ?? false
         };
+        // Remove any trailing slashes (including multiple)
+        this.config.busytexBasePath = this.config.busytexBasePath.replace(/\/+$/, '');
         this.logger = new Logger(this.config.verbose);
     }
     async initialize(useWorker = true) {
