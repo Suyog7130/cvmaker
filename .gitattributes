@@ -1,0 +1,2 @@
+/core/busytex/texlive-basic.data filter=lfs diff=lfs merge=lfs -text
+/core/busytex/texlive-extra.data filter=lfs diff=lfs merge=lfs -text
