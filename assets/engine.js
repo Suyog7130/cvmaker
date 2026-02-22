@@ -5,8 +5,8 @@ let busytexMod = null;
 // Global scope in assets/engine.js
 let pipelineInstance = null;
 
-export async function getPipeline() {
-  if (!pipelineInstance) {
+  // Ensure DOM is ready before initializing BusyTeX
+  function initializePipeline() {
     console.log("Initializing BusyTeX engine (this may take a moment)...");
     pipelineInstance = new BusytexPipeline({
       root: APP_BASE + "core/busytex/",
@@ -14,7 +14,23 @@ export async function getPipeline() {
       engine: "lualatex"
     });
     // Optional: wait for it to be ready
-    await pipelineInstance.initialize(); 
+    return pipelineInstance.initialize().then(() => pipelineInstance);
+  }
+
+  if (!pipelineInstance) {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        return initializePipeline();
+      } else {
+        return new Promise(resolve => {
+          document.addEventListener('DOMContentLoaded', () => {
+            initializePipeline().then(resolve);
+          });
+        });
+      }
+    } else {
+      throw new Error('BusyTeX requires a browser DOM environment.');
+    }
   }
   return pipelineInstance;
 }
