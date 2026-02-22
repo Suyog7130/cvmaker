@@ -12,29 +12,7 @@ import { renderMinimalAcademic } from "./templates/minimal_academic.js";
 import { renderModernCv } from "./templates/moderncv.js";
 
 const MANIFEST_URL = "./static/classes/manifest.json";
-// const BUSYTEX_BASE_PATH = "./core/busytex";
-
-// Robustly compute the directory where this app is served.
-// Works for:
-//   https://domain/cvmaker/
-//   https://domain/cvmaker
-//   https://domain/cvmaker/index.html
-const APP_BASE = (() => {
-  let p = window.location.pathname;
-
-  if (!p.endsWith("/")) {
-    const last = p.split("/").pop() || "";
-    // If it doesn't look like a filename (no dot), treat it as a folder and add "/"
-    p = last.includes(".") ? p.slice(0, p.lastIndexOf("/") + 1) : (p + "/");
-  }
-  return p;
-})();
-
-const BUSYTEX_BASE_PATH = APP_BASE + "core/busytex";
-
-// Optional debug
-console.log("APP_BASE =", APP_BASE);
-console.log("BUSYTEX_BASE_PATH =", BUSYTEX_BASE_PATH);
+const BUSYTEX_BASE_PATH = "/cvmaker/core/busytex";
 
 const el = (id) => document.getElementById(id);
 
