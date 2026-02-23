@@ -16,6 +16,8 @@ export async function loadBusyTexModule() {
   }
 }
 
+const CDN_ROOT = "https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/";
+
 export class LatexEngineManager {
   constructor({ busytexBasePath = "/cvmaker/core/busytex", useWorker = true } = {}) {
     this.busytexBasePath = busytexBasePath;
@@ -23,7 +25,8 @@ export class LatexEngineManager {
     this.runner = null;
     this.engineName = "lualatex";
     this.engine = null;
-    this.root = "https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.bin"; // Default to CDN, but can be overridden by config
+    this.root = CDN_ROOT; // Default to CDN, but can be overridden by config
+    this.prefix = this.root;
   }
 
   async initIfNeeded() {
@@ -31,9 +34,9 @@ export class LatexEngineManager {
     if (this.runner && this.runner.isInitialized()) return;
 
     this.runner = new mod.BusyTexRunner({
-      busytexBasePath: "/cvmaker/core/busytex", // Use empty string to load from worker's own directory
+      busytexBasePath: this.busytexBasePath, // Use empty string to load from worker's own directory
       verbose: false,
-      root: this.root
+      root: this.prefix
     });
 
     // initialize(true) enables Web Worker.
