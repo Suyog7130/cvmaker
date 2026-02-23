@@ -52,7 +52,7 @@ export class BusyTexRunner {
                 reject(new Error(`Worker error: ${error.message}`));
             };
             const busytexJs = `${this.config.busytexBasePath}/busytex.js`;
-            const busytexWasm = `https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.wasm`;
+            const busytexWasm = `https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.bin`;
             const texliveBasic = `${this.config.busytexBasePath}/texlive-basic.js`;
             const texliveExtras = `${this.config.busytexBasePath}/texlive-extra.js`;
             this.worker.postMessage({
@@ -76,7 +76,7 @@ export class BusyTexRunner {
         });
         const BusytexPipeline = window.BusytexPipeline;
         const busytexJs = `${this.config.busytexBasePath}/busytex.js`;
-        const busytexWasm = `https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.wasm`;
+        const busytexWasm = `https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.bin`;
         const texliveBasic = `${this.config.busytexBasePath}/texlive-basic.js`;
         const texliveExtras = `${this.config.busytexBasePath}/texlive-extra.js`;
         this.busytexPipeline = new BusytexPipeline(busytexJs, busytexWasm, [texliveBasic, texliveExtras], [texliveBasic], [], (msg) => this.logger.debug(msg), (versions) => this.logger.debug('Applet versions:', versions), true, BusytexPipeline.ScriptLoaderDocument);
