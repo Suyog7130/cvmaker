@@ -3,3 +3,5 @@
 #**/*.data filter=lfs diff=lfs merge=lfs -text
 #/core/busytex/texlive-basic.data filter=lfs diff=lfs merge=lfs -text
 #/core/busytex/texlive-extra.data filter=lfs diff=lfs merge=lfs -text
+/core/busytex/texlive-basic-v1.data filter=lfs diff=lfs merge=lfs -text
+/core/busytex/texlive-extra-v1.data filter=lfs diff=lfs merge=lfs -text
