@@ -94,7 +94,7 @@ class BusyTexRunner {
             };
             // Avoid repeating busytexBasePath if already included
             const busytexJs = `${this.config.busytexBasePath}/busytex.js`;
-            const busytexWasm = `https://rawcdn.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.wasm`;
+            const busytexWasm = `https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.wasm`;
             const texliveBasic = `${this.config.busytexBasePath}/texlive-basic.js`;
             const texliveExtras = `${this.config.busytexBasePath}/texlive-extra.js`;
             this.worker.postMessage({
@@ -118,7 +118,7 @@ class BusyTexRunner {
         });
         const BusytexPipeline = window.BusytexPipeline;
         const busytexJs = `${this.config.busytexBasePath}/busytex.js`;
-        const busytexWasm = `https://rawcdn.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.wasm`;
+        const busytexWasm = `https://raw.githack.com/Suyog7130/cvmaker/main/core/busytex/busytex.wasm`;
         const texliveBasic = `${this.config.busytexBasePath}/texlive-basic.js`;
         const texliveExtras = `${this.config.busytexBasePath}/texlive-extra.js`;
         this.busytexPipeline = new BusytexPipeline(
