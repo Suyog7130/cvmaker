@@ -272,7 +272,10 @@ class BusytexPipeline {
 
         this.bibtex_resolver = new BusytexBibtexResolver();
         this.data_package_resolver = new BusytexDataPackageResolver(data_packages_js, BusytexPipeline.texmf_system, texmf_local);
-        this.wasm_module_promise = fetch(busytex_wasm).then(WebAssembly.compileStreaming);
+        // This works regardless of the MIME type or file extension
+        this.wasm_module_promise = fetch(busytex_wasm)
+            .then(response => response.arrayBuffer())
+            .then(bytes => WebAssembly.compile(bytes));
         this.mem_header_size = 2 ** 26;
 
         this.em_module_promise = this.script_loader(busytex_js);
