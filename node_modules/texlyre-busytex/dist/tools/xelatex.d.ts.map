@@ -1,1 +1,0 @@
-{"version":3,"file":"xelatex.d.ts","sourceRoot":"","sources":["../../src/tools/xelatex.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AACvC,OAAO,EAAE,cAAc,EAAE,aAAa,EAAE,MAAM,eAAe,CAAC;AAE9D,qBAAa,OAAQ,SAAQ,QAAQ;IACjC,SAAS,CAAC,SAAS,IAAI,wBAAwB;IAIzC,OAAO,CAAC,OAAO,EAAE,cAAc,GAAG,OAAO,CAAC,aAAa,CAAC;CAGjE"}

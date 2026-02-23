@@ -1,1 +1,0 @@
-{"version":3,"file":"lualatex.d.ts","sourceRoot":"","sources":["../../src/tools/lualatex.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AACvC,OAAO,EAAE,eAAe,EAAE,aAAa,EAAE,MAAM,eAAe,CAAC;AAE/D,qBAAa,QAAS,SAAQ,QAAQ;IAClC,SAAS,CAAC,SAAS,IAAI,kBAAkB;IAInC,OAAO,CAAC,OAAO,EAAE,eAAe,GAAG,OAAO,CAAC,aAAa,CAAC;CAGlE"}
